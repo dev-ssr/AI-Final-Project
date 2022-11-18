@@ -15,7 +15,7 @@ ant =[]
 ant_position_X = []
 ant_position_Y = []
 
-number_of_ant = 5git
+number_of_ant = 5
 for i in range (number_of_ant):
     ant.append(pg.image.load("icons8-ant-30.png"))
     ant_position_X.append(random.randint(0,SCREEN_WIDTH/2))
@@ -44,6 +44,22 @@ def display_obstacle(x, y):
     window.blit(obstacle, (x, y))
 
 
+
+#Result
+generation= 0
+mutation_rate = 0.05
+population_size = 10
+font = pg.font.Font('freesansbold.ttf', 20)
+
+
+def display_result():
+    p = font.render("Population Size: " + str(population_size), True, (100, 0, 255))
+    m = font.render("Mutation Rate: " + str(mutation_rate), True, (100, 0, 255))
+    g = font.render("Final Generation: "+str(generation), True, (100, 0, 255))
+    window.blit(p, (10, 10))
+    window.blit(m, (10, 40))
+    window.blit(g, (10, 80))
+
 running = True
 
 while running:
@@ -54,7 +70,7 @@ while running:
             display_ant(ant_position_X[i], ant_position_Y[i], i)
     display_food(food_position_X, food_position_Y)
     display_obstacle(obstacle_position_X, obstacle_position_Y)
-
+    display_result()
     pg.display.update()
 
 pg.quit()
