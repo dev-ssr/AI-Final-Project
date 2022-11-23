@@ -76,9 +76,9 @@ if __name__ == '__main__':
     pg.display.set_caption("Ant Food Hunting")
     background = pg.image.load("pexels-fwstudio-131634.jpg")
 
+    # Generate the ant population
+    generate_ant_population(ant_population_count)
     for g in range(no_of_generations):
-        # Generate the ant population
-        generate_ant_population(ant_population_count)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 should_quit = True
@@ -112,7 +112,9 @@ if __name__ == '__main__':
                         eachAnt.x_position += eachAnt.genes[lifespan_counter][0]
                         eachAnt.y_position -= eachAnt.genes[lifespan_counter][1]
                         pg.display.update()
-
+                    # Evaluation -->fitness
+                    # Selection --> select best and perform crossover and mutation--add them to new_ant_list
+                    # ant_list = new_ant_list
                     clock.tick(1)
 
     if should_quit:
