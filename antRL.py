@@ -75,7 +75,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     for i in range(ant.no_of_ants):
-        ant.display_ant(ant.ant_x[i], ant.ant_y[i], i)
+        ant.display_ant(ant.ant_x[i], ant.ant_y[i], i). # ERROR after trying to generate ants inside cells
     ant.display_wall()
     ant.display_bread()
     ant.draw_grid(ant.window_x, ant.window_y)
