@@ -1,5 +1,4 @@
 import random
-
 import numpy as np
 import pygame
 
@@ -21,16 +20,24 @@ class Ant:
         self.ant_y = []
         self.wall = pygame.image.load("wall-1475318__480.jpeg")
         self.bread = pygame.image.load("bread.png")
-        for i in range(self.no_of_ants):
-            self.ants.append(pygame.image.load("ant_final.png"))
-            self.ant_x.append(random.randint(0, self.window_x/2))
-            self.ant_y.append(random.randint(self.window_y/2, self.window_y - 50))
-        # wall_x = self.window_x/4
-        # wall_y = self.window_y/3
         self.grid = []
 
+    def load_ant(self):
+        ant_xlist = list()
+        ant_ylist = list()
+        for x in range(self.window_x):
+            if x % 80 == 0 and x < self.window_x/2:
+                ant_xlist.append(x)
+        for y in range(self.window_y):
+            if y % 80 == 0 and y < self.window_y/2:
+                ant_ylist.append(y)
+        for i in range(self.no_of_ants):
+            self.ants.append(pygame.image.load("ant_final.png"))
+            self.ant_x.append(random.choice(ant_xlist))
+            self.ant_y.append(random.choice(ant_ylist))
 
     def display_ant(self, x, y, i):
+        self.load_ant()
         self.window.blit(self.ants[i], (x, y))
 
     def display_wall(self):
@@ -74,4 +81,3 @@ while running:
     ant.draw_grid(ant.window_x, ant.window_y)
     pygame.display.update()
 pygame.quit()
-
