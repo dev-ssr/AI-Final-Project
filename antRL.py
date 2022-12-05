@@ -1,5 +1,6 @@
 import random
 
+import numpy as np
 import pygame
 
 
@@ -26,6 +27,7 @@ class Ant:
             self.ant_y.append(random.randint(self.window_y/2, self.window_y - 50))
         # wall_x = self.window_x/4
         # wall_y = self.window_y/3
+        self.grid = []
 
 
     def display_ant(self, x, y, i):
@@ -47,9 +49,19 @@ class Ant:
                                    block_size, block_size)
                 pygame.draw.rect(self.window, WHITE, rect, 1)
 
+    def create_grid(self):
+        self.grid = np.zeros((8, 10))
+        for i in range(len(self.grid)):
+            for j in range(len(self.grid[i])):
+                if i == 2 and (j == 2 or j == 3 or j == 4 or j == 5 or j == 6 or j == 7):
+                    self.grid[i][j] = -10
+                elif i == 0 and j == 4:
+                    self.grid[i][j] = 10
+        return self.grid
+
 
 ant = Ant()
-# to prevent the window from closing, we use event handler
+print(ant.create_grid())
 running = True
 while running:
     for event in pygame.event.get():
@@ -62,3 +74,4 @@ while running:
     ant.draw_grid(ant.window_x, ant.window_y)
     pygame.display.update()
 pygame.quit()
+
