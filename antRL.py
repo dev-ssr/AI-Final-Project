@@ -20,8 +20,6 @@ class Ant:
         self.ant_y = []
         self.wall = pygame.image.load("wall-1475318__480.jpeg")
         self.bread = pygame.image.load("bread.png")
-
-    def load_img(self):
         for i in range(self.no_of_ants):
             self.ants.append(pygame.image.load("ant_final.png"))
             self.ant_x.append(random.randint(0, self.window_x/2))
@@ -31,8 +29,7 @@ class Ant:
 
 
     def display_ant(self, x, y, i):
-        self.load_img()
-        self.window.blit(self.ant[i], (x, y))
+        self.window.blit(self.ants[i], (x, y))
 
     def display_wall(self):
         self.window.blit(self.wall, (160, 160))
